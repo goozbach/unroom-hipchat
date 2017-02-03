@@ -1,0 +1,15 @@
+---
+- name: testing hipchat integration
+  hosts: localhost
+  gather_facts: false
+  connection: local
+  vars_files:
+    - vault.yml
+  tasks:
+    - name: send message to unroom
+      hipchat:
+        api: https://{{ api_endpoint }}/v2/
+        token: "{{ unroom_api_key }}"
+        room: "##unroom##"
+        msg: Ansible task finished
+
